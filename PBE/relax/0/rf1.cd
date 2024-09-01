@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --qos=premium
+#SBATCH -t 24:00:00
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=128
+#SBATCH --cpus-per-task=2
+#SBATCH -C cpu
+#SBATCH --mail-user=glenn167@d.umn.edu     # Email address 
+#SBATCH --mail-type=ALL                    # Notification types
+#SBATCH -A m3974
+
+export OMP_NUM_THREADS=1
+
+module use /global/common/software/m4517/libxc/modulefile
+module load libxc/6.2.2
+
+module load python cray-fftw
+conda activate /global/common/software/m4517/gpaw_gc
+
+srun -N 2 -n 256 gpaw python rf1.py
+sleep 100
