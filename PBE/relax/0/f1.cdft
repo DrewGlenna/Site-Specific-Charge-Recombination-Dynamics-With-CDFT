@@ -1,0 +1,69 @@
+Number of charge constrained regions: 1
+Number of spin constrained regions: 0
+Charge difference: False
+Parameters
+Atom      Width[A]      Rc[A]
+  Ti       0.820        4.100
+  O       0.700        3.160
+  Au       0.772        3.860
+
+Optimizer: L-BFGS-B
+Optimizer setups:{'gtol': 0.01}
+----------------------------------------
+Iteration: 0
+Energy: -636.87059831 eV
+Coefficients [eV]: 1.020   
+Errors [e]: 0.0022   
+
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
+
+Final DFT energy : -636.8705983060921 eV 
+
+CDFT free energy <A|H+Vw|A> : -591.988385430493 eV 
+
+Number of charge constrained regions: 1
+Number of spin constrained regions: 0
+Charge difference: False
+Parameters
+Atom      Width[A]      Rc[A]
+  Ti       0.820        4.100
+  O       0.700        3.160
+  Au       0.772        3.860
+
+Optimizer: L-BFGS-B
+Optimizer setups:{'gtol': 0.01}
+----------------------------------------
+Iteration: 0
+Energy: -636.87319167 eV
+Coefficients [eV]: 1.020   
+Errors [e]: 0.0156   
+
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
+
+Final DFT energy : -636.8731916748848 eV 
+
+CDFT free energy <A|H+Vw|A> : -591.9772870001927 eV 
+
+Number of charge constrained regions: 1
+Number of spin constrained regions: 0
+Charge difference: False
+Parameters
+Atom      Width[A]      Rc[A]
+  Ti       0.820        4.100
+  O       0.700        3.160
+  Au       0.772        3.860
+
+Optimizer: L-BFGS-B
+Optimizer setups:{'gtol': 0.01}
+----------------------------------------
+Iteration: 0
+Energy: -636.87454840 eV
+Coefficients [eV]: 1.020   
+Errors [e]: 0.0045   
+
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
+
+Final DFT energy : -636.8745483960164 eV 
+
+CDFT free energy <A|H+Vw|A> : -591.9899785275109 eV 
+
