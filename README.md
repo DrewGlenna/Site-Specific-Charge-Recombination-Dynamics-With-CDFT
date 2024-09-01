@@ -1,0 +1,1 @@
+Theoretical Investigation of Au Nanoparticle/TiO2 Charge Recombination Dynamics Toward Light-driven Hydrogen Production Technologies. This work consists of cDFT calculations in GPAW at the PBE, PBE+U, PBE+U+D3, and PBE+U+D4 levels of theory. This work was completed in partial fulfillment of my Ph.D. dissertation. 
