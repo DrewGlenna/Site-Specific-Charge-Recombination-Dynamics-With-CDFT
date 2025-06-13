@@ -1,0 +1,62 @@
+  _________________________________
+                                   
+ |         DFTD3 V3.1 Rev 1        |
+ | S.Grimme, University Bonn       |
+ |         October  2015           |
+ |   see dftd3 -h for options      |
+  _________________________________
+
+ Please cite DFT-D3 work done with this code as:
+ S. Grimme, J. Antony, S. Ehrlich and H. Krieg,
+ J. Chem. Phys. 132 (2010), 154104
+ If used with BJ-damping cite also
+ S. Grimme, S. Ehrlich and L. Goerigk,
+ J. Comput. Chem. 32 (2011), 1456-1465
+ For DFT-D2 the reference is
+ S. Grimme, J. Comput. Chem., 27 (2006), 1787-1799
+ For DFT-D3M or DFT-D3M(BJ) the reference is
+ D.G.A. Smith, L.A. Burns, K. Patkowski, and 
+ C.D. Sherrill, J. Phys. Chem. Lett. 7 (2016) 2197-2203
+
+  files read :     
+ ase_dftd3.POSCAR
+C6 coefficients used:
+           2  C6 for element           79
+Z= 79 CN= 0.000     C6(AA)=  342.35
+Z= 79 CN= 0.985     C6(AA)=  317.16
+
+#               XYZ [au]               R0(AA) [Ang.]  CN       C6(AA)     C8(AA)   C10(AA) [au] 
+   1   6.40642   2.13544  37.22268   au    1.628    2.569       317.2     30985.0   3708224.0
+   2  11.47663   2.38410  37.20997   au    1.628    2.540       317.2     30985.0   3708224.0
+   3   3.67259   6.42333  37.21027   au    1.628    1.779       317.2     30985.1   3708235.0
+   4  13.65817   6.97920  37.22412   au    1.628    1.782       317.2     30985.1   3708234.7
+   5   8.66303   6.83193  37.20168   au    1.628    3.409       317.2     30985.0   3708223.9
+
+molecular C6(AA) [au] =      7928.91
+
+           DFT-D V3
+ DF pbe                                               
+ parameters
+ s6       :    1.0000
+ s8       :    0.7220
+ rs6      :    1.2170
+ rs18     :    1.0000
+ alpha6   :   14.0000
+ alpha8   :   16.0000
+ k1-k3    :   16.0000    1.3333   -4.0000
+ Cutoff   :   95.0000 a.u.
+ CN-Cutoff:   40.0000 a.u.
+
+ Edisp /kcal,au,eV:    -5.9423  -0.00946972  -0.2576842
+
+ E6    /kcal :    -2.3265
+ E8    /kcal :    -3.6159
+ % E8        : 60.85
+
+ doing analytical gradient O(N^2) ...
+ |G(force)| =   7.3606193261969693E-003
+ |G(stress)|=   8.9684334162719738E-004
+gdisp time     0.0
+ Cartesian gradient written to file dftd3_gradient.
+ Cartesian cellgradient written                      to file dftd3_cellgradient. (a.u.)
+ normal termination of dftd3
