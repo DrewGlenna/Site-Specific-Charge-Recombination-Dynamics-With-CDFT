@@ -1,0 +1,41 @@
+Number of charge constrained regions: 1
+Number of spin constrained regions: 0
+Charge difference: False
+Parameters
+Atom      Width[A]      Rc[A]
+  Ti       0.800        4.100
+  O       0.700        3.160
+  Au       0.610        3.860
+
+Optimizer: SLSQP
+Optimizer setups:{'gtol': 0.01}
+----------------------------------------
+Iteration: 0
+Energy: -528.95238229 eV
+Coefficients [eV]: 0.250   
+Errors [e]: 0.0166   
+
+----------------------------------------
+Iteration: 1
+Energy: -528.92702918 eV
+Coefficients [eV]: 0.701   
+Errors [e]: -0.0348   
+
+----------------------------------------
+Iteration: 2
+Energy: -528.95077079 eV
+Coefficients [eV]: 0.295   
+Errors [e]: 0.0103   
+
+----------------------------------------
+Iteration: 3
+Energy: -528.94794318 eV
+Coefficients [eV]: 0.370   
+Errors [e]: 0.0038   
+
+Optimization terminated successfully
+
+Final DFT energy : -528.9479431809939 eV 
+
+CDFT free energy <A|H+Vw|A> : -512.6642920987156 eV 
+
