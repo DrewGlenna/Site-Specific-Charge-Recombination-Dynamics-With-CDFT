@@ -1,0 +1,61 @@
+  _________________________________
+                                   
+ |         DFTD3 V3.1 Rev 1        |
+ | S.Grimme, University Bonn       |
+ |         October  2015           |
+ |   see dftd3 -h for options      |
+  _________________________________
+
+ Please cite DFT-D3 work done with this code as:
+ S. Grimme, J. Antony, S. Ehrlich and H. Krieg,
+ J. Chem. Phys. 132 (2010), 154104
+ If used with BJ-damping cite also
+ S. Grimme, S. Ehrlich and L. Goerigk,
+ J. Comput. Chem. 32 (2011), 1456-1465
+ For DFT-D2 the reference is
+ S. Grimme, J. Comput. Chem., 27 (2006), 1787-1799
+ For DFT-D3M or DFT-D3M(BJ) the reference is
+ D.G.A. Smith, L.A. Burns, K. Patkowski, and 
+ C.D. Sherrill, J. Phys. Chem. Lett. 7 (2016) 2197-2203
+
+  files read :     
+ ase_dftd3.POSCAR
+C6 coefficients used:
+           2  C6 for element           79
+Z= 79 CN= 0.000     C6(AA)=  342.35
+Z= 79 CN= 0.985     C6(AA)=  317.16
+
+#               XYZ [au]               R0(AA) [Ang.]  CN       C6(AA)     C8(AA)   C10(AA) [au] 
+   1   9.51904   1.19943  37.44812   au    1.628    2.588       317.2     30985.0   3708224.0
+   2  13.35403   4.45102  37.51418   au    1.628    1.792       317.2     30985.1   3708234.0
+   3   4.87699   3.13722  37.44291   au    1.628    1.794       317.2     30985.1   3708233.8
+   4   8.71042   6.37726  37.44386   au    1.628    2.592       317.2     30985.0   3708224.0
+
+molecular C6(AA) [au] =      5074.50
+
+           DFT-D V3
+ DF pbe                                               
+ parameters
+ s6       :    1.0000
+ s8       :    0.7220
+ rs6      :    1.2170
+ rs18     :    1.0000
+ alpha6   :   14.0000
+ alpha8   :   16.0000
+ k1-k3    :   16.0000    1.3333   -4.0000
+ Cutoff   :   95.0000 a.u.
+ CN-Cutoff:   40.0000 a.u.
+
+ Edisp /kcal,au,eV:    -3.3350  -0.00531464  -0.1446186
+
+ E6    /kcal :    -1.1570
+ E8    /kcal :    -2.1780
+ % E8        : 65.31
+
+ doing analytical gradient O(N^2) ...
+ |G(force)| =   5.4747872563124921E-003
+ |G(stress)|=   2.3765573092115289E-004
+gdisp time     0.0
+ Cartesian gradient written to file dftd3_gradient.
+ Cartesian cellgradient written                      to file dftd3_cellgradient. (a.u.)
+ normal termination of dftd3
