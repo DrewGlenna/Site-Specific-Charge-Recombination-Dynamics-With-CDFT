@@ -8,7 +8,7 @@ from ase.units import Bohr
 from ase.dft.kpoints import monkhorst_pack
 from gpaw import GPAW, FermiDirac, Davidson, MixerDif, PoissonSolver
 from gpaw.cdft.cdft import CDFT
-from ase.calculators.dftd3 import DFTD3
+# from ase.calculators.dftd3 import DFTD3
 from gpaw.cdft.cdft_coupling import CouplingParameters
 
 # =================================================================================
@@ -42,7 +42,7 @@ dfti = GPAW(
                    beta_m=0.01,                # linear magnetic mixing coefficient
                    nmaxold_m=8,                    # of old magnetic densities used
                    weight_m=100.0),                # magnetic density mixing weight
-    maxiter=1500,                        # Set the maximum number of SCF iterations
+    maxiter=5000,                        # Set the maximum number of SCF iterations
     txt=f'i.txt',                                                # output .txt file
     convergence={                                            # convergence criteria
         'eigenstates': 1.0e-10,                                   # eV^2 / electron
@@ -50,7 +50,7 @@ dfti = GPAW(
         'energy': 1.0e-6},                                          # eV / electron
     poissonsolver = PoissonSolver(dipolelayer='xy', name='fd', relax='GS'))
 
-# initial state cDFT calculator
+# initial state CDFT calculator
 Vc=[3.15, -3.45]                                             # initial guess for Vc
 b=[0.25, 0.25]                                          # Vc bounds for each region
 bound=[(ii-b[cc], ii+b[cc]) for cc, ii in enumerate(Vc)]         # set bounds on Vc
@@ -63,12 +63,12 @@ cdfti = CDFT(
     bounds=bound,                                                       # Vc bounds
     mu={'Au': 0.61, 'Ti': 0.82, 'O': 0.70},                      # width parameters
     method='SLSQP',                                        # Vc optimization method
-    txt=f'i.cdft',                                               # cDFT output file
+    txt=f'i.cdft',                                               # CDFT output file
     forces='fd',
     tol=1e-6,
-    minimizer_options={'gtol': 0.01})                   # charge tolerance for cdft
+    minimizer_options={'gtol': 0.01})                   # charge tolerance for CDFT
 
-# Get initial state dft energy
+# Get initial state CDFT energy
 sys.calc = cdfti
 cdft_i = sys.get_potential_energy()
 sys.calc.write('i.gpw', mode='all')
@@ -102,7 +102,7 @@ dftf = GPAW(
                    beta_m=0.01,                # linear magnetic mixing coefficient
                    nmaxold_m=8,                    # of old magnetic densities used
                    weight_m=100.0),                # magnetic density mixing weight
-    maxiter=1500,                        # Set the maximum number of SCF iterations
+    maxiter=5000,                        # Set the maximum number of SCF iterations
     txt=f'f.txt',                                                # output .txt file
     convergence={                                            # convergence criteria
         'eigenstates': 1.0e-10,                                   # eV^2 / electron
@@ -110,7 +110,7 @@ dftf = GPAW(
         'energy': 1.0e-6},                                          # eV / electron
     poissonsolver = PoissonSolver(dipolelayer='xy', name='fd', relax='GS'))
 
-# final state cDFT calculator
+# final state CDFT calculator
 Vc=[0.25]                                                    # initial guess for Vc
 b=[1.00]                                                                # Vc bounds
 bound=[(ii-b[cc], ii+b[cc]) for cc, ii in enumerate(Vc)]         # set bounds on Vc
@@ -123,12 +123,12 @@ cdftf = CDFT(
     bounds=bound,                                                       # Vc bounds
     mu={'Au': 0.61, 'Ti': 0.82, 'O': 0.70},                      # width parameters
     method='SLSQP',                                        # Vc optimization method
-    txt=f'f.cdft',                                               # cDFT output file
+    txt=f'f.cdft',                                               # CDFT output file
     forces='fd',
     tol=1e-6,
-    minimizer_options={'gtol': 0.01})                   # charge tolerance for cdft
+    minimizer_options={'gtol': 0.01})                   # charge tolerance for CDFT
 
-# Get final state cdft energy
+# Get final state CDFT energy
 sys.calc = cdftf
 cdft_f = sys.get_potential_energy()
 sys.calc.write('f.gpw', mode='all')
@@ -162,7 +162,7 @@ dft = GPAW(
                    beta_m=0.01,                # linear magnetic mixing coefficient
                    nmaxold_m=8,                    # of old magnetic densities used
                    weight_m=100.0),                # magnetic density mixing weight
-    maxiter=1500,                        # Set the maximum number of SCF iterations
+    maxiter=5000,                        # Set the maximum number of SCF iterations
     txt=f'gs.txt',                                               # output .txt file
     convergence={                                            # convergence criteria
         'eigenstates': 1.0e-10,                                   # eV^2 / electron
@@ -170,23 +170,22 @@ dft = GPAW(
         'energy': 1.0e-6},                                          # eV / electron
     poissonsolver = PoissonSolver(dipolelayer='xy', name='fd', relax='GS'))
 
-# Get ground state dft energy
+# Get ground state DFT energy
 sys.calc = dft
 dft_gs = sys.get_potential_energy()
 sys.calc.write('gs.gpw', mode='all')
 
 # Calculate the diabatic coupling
-coupling = CouplingParameters(cdft_a=cdfti,
-                              cdft_b=cdftf,
-                              calc_gs=dft,
-                              AE=False)                       # use pseudo orbitals
-Hab      = coupling.get_migliore_coupling()        # diabatic coupling from overlap
+odc  = CouplingParameters(cdft_a=cdfti, cdft_b=cdftf, AE=False)   # pseudo orbitals
+H12  = odc.get_coupling_term()                           # use original CDFT method
+modc = CouplingParameters(cdft_a=cdfti, cdft_b=cdftf, calc_gs=dft, AE=False)
+Hab  = modc.get_migliore_coupling()                       # use overlap CDFT method
 
-# Write to Energy file
-with open(fp, 'w') as file:
-    # Write content to the file
-    file.write(f"i   = {cdft_i}\n")
-    file.write(f"f   = {cdft_f}\n")
-    file.write(f"gs  = {dft_gs}\n")
-    file.write(f"Hab = {Hab} eV\n")
+# Write to diabatic coupling file
+with open(fp, "w") as file:
+    file.write(f"Initial State Energy          = {cdft_i:.6f} eV\n")
+    file.write(f"Final State Energy            = {cdft_f:.6f} eV\n")
+    file.write(f"Ground State Energy           = {dft_gs:.6f} eV\n")
+    file.write(f"Original CDFT Coupling Energy = {H12:.6f} eV\n")
+    file.write(f"Migliore Coupling Energy      = {Hab:.6f} eV\n")
 #==================================================================================
