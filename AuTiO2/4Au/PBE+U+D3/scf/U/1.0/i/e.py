@@ -8,7 +8,7 @@ from ase.units import Bohr
 from ase.dft.kpoints import monkhorst_pack
 from gpaw import GPAW, FermiDirac, Davidson, MixerDif, PoissonSolver
 from gpaw.cdft.cdft import CDFT
-from ase.calculators.dftd3 import DFTD3
+# from ase.calculators.dftd3 import DFTD3
 from gpaw.cdft.cdft_coupling import CouplingParameters
 
 # =================================================================================
@@ -51,22 +51,22 @@ dfti = GPAW(
     poissonsolver = PoissonSolver(dipolelayer='xy', name='fd', relax='GS'))
 
 # initial state cDFT calculator
-Vc=[3.30]                                                    # initial guess for Vc
-b=[0.50]                                                                # Vc bounds
+Vc=[1.00, -1.00]                                             # initial guess for Vc
+b=[1.00, 1.00]                                          # Vc bounds for each region
 bound=[(ii-b[cc], ii+b[cc]) for cc, ii in enumerate(Vc)]         # set bounds on Vc
 cdfti = CDFT(
     calc=dfti,
     atoms=sys,
-    charge_regions=[[72, 73, 74, 75]],                  # set Au constrained region
-    charges=[1.0],                  # constrain +1.0 and -1.0 charge in Au and TiO2
+    charge_regions=[[72, 73, 74, 75], list(range(0, 72))],    # Constrained regions
+    charges=[1.0, -1.0],            # constrain +1.0 and -1.0 charge in Au and TiO2
     charge_coefs=Vc,                                         # initial guess for Vc
     bounds=bound,                                                       # Vc bounds
     mu={'Au': 0.61, 'Ti': 0.82, 'O': 0.70},                      # width parameters
     method='SLSQP',                                        # Vc optimization method
-    txt=f'i.cdft',                                               # cDFT output file
+    txt=f'i.cdft',                                               # CDFT output file
     forces='fd',
     tol=1e-6,
-    minimizer_options={'gtol': 0.01})                   # charge tolerance for cdft
+    minimizer_options={'gtol': 0.01})                   # charge tolerance for CDFT
 
 # Get initial state dft energy
 sys.calc = cdfti
@@ -111,22 +111,22 @@ dftf = GPAW(
     poissonsolver = PoissonSolver(dipolelayer='xy', name='fd', relax='GS'))
 
 # final state cDFT calculator
-Vc=[-2.00]                                                   # initial guess for Vc
-b=[1.00]                                                                # Vc bounds
+Vc=[-2.00, 2.00]                                             # initial guess for Vc
+b=[1.00, 1.00]                                          # Vc bounds for each region
 bound=[(ii-b[cc], ii+b[cc]) for cc, ii in enumerate(Vc)]         # set bounds on Vc
 cdftf = CDFT(
     calc=dftf,
     atoms=sys,
-    charge_regions=[[72, 73, 74, 75]],                  # set Au constrained region
-    charges=[0],                          # constrain 0 and 0 charge in Au and TiO2
+    charge_regions=[[72, 73, 74, 75], list(range(0, 72))],    # Constrained regions
+    charges=[0.0, 0.0],               # constrain 0.0 and 0.0 charge in Au and TiO2
     charge_coefs=Vc,                                         # initial guess for Vc
     bounds=bound,                                                       # Vc bounds
     mu={'Au': 0.61, 'Ti': 0.82, 'O': 0.70},                      # width parameters
     method='SLSQP',                                        # Vc optimization method
-    txt=f'f.cdft',                                               # cDFT output file
+    txt=f'f.cdft',                                               # CDFT output file
     forces='fd',
     tol=1e-6,
-    minimizer_options={'gtol': 0.01})                   # charge tolerance for cdft
+    minimizer_options={'gtol': 0.01})                   # charge tolerance for CDFT
 
 # Get final state cdft energy
 sys.calc = cdftf
@@ -176,17 +176,16 @@ dft_gs = sys.get_potential_energy()
 sys.calc.write('gs.gpw', mode='all')
 
 # Calculate the diabatic coupling
-coupling = CouplingParameters(cdft_a=cdfti,
-                              cdft_b=cdftf,
-                              calc_gs=dft,
-                              AE=False)                       # use pseudo orbitals
-Hab      = coupling.get_migliore_coupling()        # diabatic coupling from overlap
+odc  = CouplingParameters(cdft_a=cdfti, cdft_b=cdftf, AE=False)   # pseudo orbitals
+H12  = odc.get_coupling_term()                           # use original CDFT method
+modc = CouplingParameters(cdft_a=cdfti, cdft_b=cdftf, calc_gs=dft, AE=False)
+Hab  = modc.get_migliore_coupling()                       # use overlap CDFT method
 
-# Write to Energy file
-with open(fp, 'w') as file:
-    # Write content to the file
-    file.write(f"i   = {cdft_i}\n")
-    file.write(f"f   = {cdft_f}\n")
-    file.write(f"gs  = {dft_gs}\n")
-    file.write(f"Hab = {Hab} eV\n")
+# Write to diabatic coupling file
+with open(fp, "w") as file:
+    file.write(f"Initial State Energy          = {cdft_i:.6f} eV\n")
+    file.write(f"Final State Energy            = {cdft_f:.6f} eV\n")
+    file.write(f"Ground State Energy           = {dft_gs:.6f} eV\n")
+    file.write(f"Original CDFT Coupling Energy = {H12:.6f} eV\n")
+    file.write(f"Migliore Coupling Energy      = {Hab:.6f} eV\n")
 #==================================================================================
