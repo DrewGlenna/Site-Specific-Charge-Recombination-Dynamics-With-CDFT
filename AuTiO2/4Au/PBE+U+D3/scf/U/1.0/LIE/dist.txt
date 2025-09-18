@@ -1,0 +1,9 @@
+file1: d3.1.0.vasp    dz_A = 3.080
+file2: d3.gs.vasp    dz_A = 3.349
+ei.0.50.vasp    dz_A = 2.946
+i.0.25.vasp    dz_A = 3.147
+i.0.30.vasp    dz_A = 3.161
+i.0.35.vasp    dz_A = 3.174
+i.0.50.vasp    dz_A = 3.215
+i.0.75.vasp    dz_A = 3.282
+egs.0.50.vasp    dz_A = 3.484
