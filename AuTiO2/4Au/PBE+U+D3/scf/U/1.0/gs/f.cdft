@@ -1,4 +1,4 @@
-Number of charge constrained regions: 1
+Number of charge constrained regions: 2
 Number of spin constrained regions: 0
 Charge difference: False
 Parameters
@@ -11,31 +11,31 @@ Optimizer: SLSQP
 Optimizer setups:{'gtol': 0.01}
 ----------------------------------------
 Iteration: 0
-Energy: -528.95237843 eV
-Coefficients [eV]: 0.250   
-Errors [e]: -0.0377   
+Energy: -528.94109454 eV
+Coefficients [eV]: 0.250  -0.250   
+Errors [e]: -0.0666  0.0632   
 
 ----------------------------------------
 Iteration: 1
-Energy: -528.92597373 eV
-Coefficients [eV]: -0.750   
-Errors [e]: 0.0742   
+Energy: -528.83406830 eV
+Coefficients [eV]: -0.750  0.750   
+Errors [e]: 0.1566  -0.1601   
 
 ----------------------------------------
 Iteration: 2
-Energy: -528.95483408 eV
-Coefficients [eV]: 0.150   
-Errors [e]: -0.0252   
+Energy: -528.95091355 eV
+Coefficients [eV]: 0.150  -0.150   
+Errors [e]: -0.0425  0.0391   
 
 ----------------------------------------
 Iteration: 3
-Energy: -528.95639133 eV
-Coefficients [eV]: -0.051   
-Errors [e]: -0.0042   
+Energy: -528.95639921 eV
+Coefficients [eV]: -0.065  -0.027   
+Errors [e]: -0.0058  0.0024   
 
 Optimization terminated successfully
 
-Final DFT energy : -528.9563913256363 eV 
+Final DFT energy : -528.9563992100942 eV 
 
-CDFT free energy <A|H+Vw|A> : -531.2175776487923 eV 
+CDFT free energy <A|H+Vw|A> : -547.5561403215834 eV 
 

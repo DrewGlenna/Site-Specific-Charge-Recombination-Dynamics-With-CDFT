@@ -111,14 +111,14 @@ dftf = GPAW(
     poissonsolver = PoissonSolver(dipolelayer='xy', name='fd', relax='GS'))
 
 # final state CDFT calculator
-Vc=[0.25]                                                    # initial guess for Vc
-b=[1.00]                                                                # Vc bounds
+Vc=[0.25, -0.25]                                             # initial guess for Vc
+b=[1.00, 1.00]                                          # Vc bounds for each region
 bound=[(ii-b[cc], ii+b[cc]) for cc, ii in enumerate(Vc)]         # set bounds on Vc
 cdftf = CDFT(
     calc=dftf,
     atoms=sys,
-    charge_regions=[[72, 73, 74, 75]],                  # set Au constrained region
-    charges=[0],                          # constrain 0 and 0 charge in Au and TiO2
+    charge_regions=[[72, 73, 74, 75], list(range(0, 72))],    # Constrained regions
+    charges=[0.0, 0.0],               # constrain 0.0 and 0.0 charge in Au and TiO2
     charge_coefs=Vc,                                         # initial guess for Vc
     bounds=bound,                                                       # Vc bounds
     mu={'Au': 0.61, 'Ti': 0.82, 'O': 0.70},                      # width parameters
