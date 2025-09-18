@@ -1,0 +1,389 @@
+
+  ___ ___ ___ _ _ _  
+ |   |   |_  | | | | 
+ | | | | | . | | | | 
+ |__ |  _|___|_____|  24.6.0
+ |___|_|             
+
+User:   dmglenna@nid004371
+Date:   Thu Aug 14 17:05:27 2025
+Arch:   x86_64
+Pid:    143076
+CWD:    /pscratch/sd/d/dmglenna/PHD/ED/AuTiO2/3L/4Au/PBE+U+D3/scf/U/1.0/gs/Hab/EXX
+Python: 3.12.9
+gpaw:   /global/u1/d/dmglenna/gpaw/gpaw (f5c548012a)
+_gpaw:  /global/u1/d/dmglenna/gpaw/_gpaw.cpython-312-x86_64-linux-gnu.so
+ase:    /global/common/software/m4517/gpaw_gc/lib/python3.12/site-packages/ase (version 3.25.0)
+numpy:  /global/common/software/m4517/gpaw_gc/lib/python3.12/site-packages/numpy (version 1.26.4)
+scipy:  /global/common/software/m4517/gpaw_gc/lib/python3.12/site-packages/scipy (version 1.15.3)
+libxc:  6.2.2
+units:  Angstrom and eV
+cores: 256
+OpenMP: False
+OMP_NUM_THREADS: 1
+
+Input parameters:
+  convergence: {density: 1e-05,
+                eigenstates: 1e-10,
+                energy: 1e-06}
+  eigensolver: {name: rmm-diis,
+                niter: 3}
+  h: 0.2
+  maxiter: 5000
+  mixer: {backend: pulay,
+          beta: 0.01,
+          beta_m: 0.01,
+          method: difference,
+          nmaxold: 1,
+          nmaxold_m: 8,
+          weight: 100.0,
+          weight_m: 100.0}
+  mode: fd
+  occupations: {fixmagmom: False,
+                name: fermi-dirac,
+                width: 0.1}
+  poissonsolver: {eps: 2e-10,
+                  name: fd,
+                  nn: 3,
+                  relax: GS}
+  setups: paw
+  spinpol: True
+  symmetry: off
+  xc: EXX
+
+System changes: positions, numbers, cell, pbc, initial_charges, initial_magmoms 
+
+Initialize ...
+
+species:
+  Ti:
+    name: Titanium
+    id: d282db07e62ae71292040bf25b25ccdd
+    Z: 22.0
+    valence: 12
+    core: 10
+    charge: 0.0
+    file: /global/common/software/m4517/setups/gpaw-setups-0.9.20000/Ti.PBE.gz
+    compensation charges: {type: gauss,
+                           rc: 0.38,
+                           lmax: 2}
+    cutoffs: {filter: 2.23,
+              core: 1.02}
+    projectors:
+      #              energy  rcut
+      - 3s(2.00)   -62.623   1.270
+      - 4s(2.00)    -4.466   1.270
+      - 3p(6.00)   -38.862   1.058
+      - 4p(0.00)    -1.466   1.058
+      - 3d(2.00)    -4.258   1.058
+      -  d          22.953   1.058
+  
+    # Using partial waves for Ti as LCAO basis
+
+  O:
+    name: Oxygen
+    id: 32ecd46bf208036f09c70b0ec9a88b78
+    Z: 8.0
+    valence: 6
+    core: 2
+    charge: 0.0
+    file: /global/common/software/m4517/setups/gpaw-setups-0.9.20000/O.PBE.gz
+    compensation charges: {type: gauss,
+                           rc: 0.21,
+                           lmax: 2}
+    cutoffs: {filter: 1.17,
+              core: 0.83}
+    projectors:
+      #              energy  rcut
+      - 2s(2.00)   -23.961   0.688
+      - 2p(4.00)    -9.029   0.598
+      -  s           3.251   0.688
+      -  p          18.182   0.598
+      -  d           0.000   0.619
+  
+    # Using partial waves for O as LCAO basis
+
+  Au:
+    name: Gold
+    id: b12133f335f6ca0d89c4b1ccaa844e9a
+    Z: 79.0
+    valence: 11
+    core: 68
+    charge: 0.0
+    file: /global/common/software/m4517/setups/gpaw-setups-0.9.20000/Au.PBE.gz
+    compensation charges: {type: gauss,
+                           rc: 0.42,
+                           lmax: 2}
+    cutoffs: {filter: 2.33,
+              core: 2.81}
+    projectors:
+      #              energy  rcut
+      - 6s(1.00)    -5.728   1.323
+      - 6p(0.00)    -0.775   1.323
+      - 5d(10.00)    -6.891   1.323
+      -  s          21.484   1.323
+      -  p          26.436   1.323
+      -  d          20.321   1.323
+  
+    # Using partial waves for Au as LCAO basis
+
+Reference energy: -2721730.337652  # eV
+
+Spin-polarized calculation.
+Magnetic moment: 0.000000
+
+Convergence criteria:
+ Maximum [total energy] change in last 3 cyles: 1e-06 eV / valence electron
+ Maximum integral of absolute [dens]ity change: 1e-05 electrons / valence electron
+ Maximum integral of absolute [eigenst]ate change: 1e-10 eV^2 / valence electron
+ Maximum number of scf [iter]ations: 5000
+ (Square brackets indicate name in SCF output, whereas a 'c' in
+ the SCF output indicates the quantity has converged.)
+
+Symmetries present (total): 1
+
+  ( 1  0  0)
+  ( 0  1  0)
+  ( 0  0  1)
+
+1 k-point (Gamma)
+1 k-point in the irreducible part of the Brillouin zone
+       k-points in crystal coordinates                weights
+   0:     0.00000000    0.00000000    0.00000000          1/1
+
+Wave functions: Uniform real-space grid
+  Kinetic energy operator: 6*3+1=19 point O(h^6) finite-difference Laplacian
+  ScaLapack parameters: grid=1x1, blocksize=None
+  Wavefunction extrapolation:
+    Improved wavefunction reuse through dual PAW basis 
+
+Occupation numbers: Fermi-Dirac:
+  width: 0.1000  # eV
+ 
+
+Eigensolver
+   RMM-DIIS eigensolver
+       keep_htpsit: True
+       DIIS iterations: 3
+       Threshold for DIIS: 1.0e-16
+       Limit lambda: False
+       use_rayleigh: False
+       trial_step: 0.1 
+
+Densities:
+  Coarse grid: 52*36*144 grid
+  Fine grid: 104*72*288 grid
+  Total Charge: 0.000000 
+
+Density mixing:
+  Method: difference
+  Backend: pulay
+  Linear mixing parameter: 0.01
+  old densities: 1
+  Damping of long wavelength oscillations: 100 
+
+Hamiltonian:
+  XC and Coulomb potentials evaluated on a 104*72*288 grid
+  Using the EXX Exchange-Correlation functional
+  Interpolation: tri-quintic (5. degree polynomial)
+  Poisson solver: Gauss-Seidel solver with 4 multi-grid levels
+    Coarsest grid: 13 x 9 x 36 points
+    Warning: Coarse grid has more than 24 points.
+             More multi-grid levels recommended.
+    Stencil: 6*3+1=19 point O(h^6) finite-difference Laplacian
+    Max iterations: 1000
+    Tolerance: 2.000000e-10
+ 
+
+Memory estimate:
+  Process memory now: 258.23 MiB
+  Calculator: 10.70 MiB
+    Density: 1.06 MiB
+      Arrays: 0.28 MiB
+      Localized functions: 0.63 MiB
+      Mixer: 0.14 MiB
+    Hamiltonian: 0.41 MiB
+      Arrays: 0.21 MiB
+      XC: 0.00 MiB
+      Poisson: 0.16 MiB
+      vbar: 0.05 MiB
+    Wavefunctions: 9.23 MiB
+      Arrays psit_nG: 6.04 MiB
+      Eigensolver: 3.07 MiB
+      Projections: 0.03 MiB
+      Projectors: 0.10 MiB
+
+Total number of cores used: 256
+Domain decomposition: 4 x 4 x 16
+
+Number of atoms: 76
+Number of atomic orbitals: 540
+Number of bands in calculation: 376
+Number of valence electrons: 620
+Bands to converge: occupied
+
+... initialized
+
+Initializing position-dependent things.
+
+Density initialized from atomic densities
+Creating initial wave functions:
+  376 bands from LCAO basis set
+
+      .-------------------------.  
+     /|                         |  
+    / |                         |  
+   /  |                         |  
+  /   |                         |  
+ *    |                         |  
+ |    |                         |  
+ |    |                         |  
+ |    |                         |  
+ |    |                         |  
+ |    |                         |  
+ |    |                         |  
+ |    |                         |  
+ |    |                         |  
+ |    |        Au   OAu         |  
+ |    |      O          Ti      |  
+ |    O  Au      Ti     O    O  |  
+ |    |   Ti   Au O   O         |  
+ | O  |   O    O      Ti     Ti |  
+ |    | Ti     Ti     O    O    |  
+ |    |     O       O      Ti   |  
+ |   O|Ti     O      O          |  
+ |    |O    O      Ti     Ti    |  
+ |  Ti|    Ti          O  O   O |  
+ |    |  O  O   O O    TiO      |  
+ |  O |         TiO         O Ti|  
+ |    | OTiO   Ti    OTi        |  
+ |    |       O     O O    O O  |  
+ |    | Oi   O O           Ti   |  
+ |    O      Ti     Ti     O    |  
+ |   Ti          O      O       |  
+ |    |   O                     |  
+ |    |                         |  
+ |    |                         |  
+ |    |                         |  
+ |    .-------------------------.  
+ |   /                         /   
+ |  /                         /    
+ | /                         /     
+ |/                         /      
+ *-------------------------*       
+
+Positions:
+   0 Ti     1.771742    0.000000    8.228379    ( 0.0000,  0.0000,  0.0000)
+   1 Ti     6.989192    1.896200    8.228379    ( 0.0000,  0.0000,  0.0000)
+   2 Ti     1.771742    3.792400    8.228379    ( 0.0000,  0.0000,  0.0000)
+   3 Ti     6.989192    5.688600    8.228379    ( 0.0000,  0.0000,  0.0000)
+   4 Ti     4.725027    0.000000    9.111586    ( 0.0000,  0.0000,  0.0000)
+   5 Ti     9.942477    1.896200    9.111586    ( 0.0000,  0.0000,  0.0000)
+   6 Ti     4.725027    3.792400    9.111586    ( 0.0000,  0.0000,  0.0000)
+   7 Ti     9.942477    5.688600    9.111586    ( 0.0000,  0.0000,  0.0000)
+   8 Ti     3.149983    0.000000   11.761552    ( 0.0000,  0.0000,  0.0000)
+   9 Ti     8.367433    1.896200   11.761552    ( 0.0000,  0.0000,  0.0000)
+  10 Ti     3.149983    3.792400   11.761552    ( 0.0000,  0.0000,  0.0000)
+  11 Ti     8.367433    5.688600   11.761552    ( 0.0000,  0.0000,  0.0000)
+  12 Ti     6.103269    0.000000   12.644759    ( 0.0000,  0.0000,  0.0000)
+  13 Ti     0.885819    1.896200   12.644759    ( 0.0000,  0.0000,  0.0000)
+  14 Ti     6.103269    3.792400   12.644759    ( 0.0000,  0.0000,  0.0000)
+  15 Ti     0.885819    5.688600   12.644759    ( 0.0000,  0.0000,  0.0000)
+  16 Ti     4.482233   -0.001033   15.342543    ( 0.0000,  0.0000,  0.0000)
+  17 Ti     9.753045    1.900753   15.389207    ( 0.0000,  0.0000,  0.0000)
+  18 Ti     4.499047    3.797034   15.348687    ( 0.0000,  0.0000,  0.0000)
+  19 Ti     9.736627    5.671166   15.407809    ( 0.0000,  0.0000,  0.0000)
+  20 Ti     7.365001   -0.008670   16.091347    ( 0.0000,  0.0000,  0.0000)
+  21 Ti     2.124206    1.919615   16.196452    ( 0.0000,  0.0000,  0.0000)
+  22 Ti     7.324862    3.785370   16.124124    ( 0.0000,  0.0000,  0.0000)
+  23 Ti     2.104658    5.692197   16.109406    ( 0.0000,  0.0000,  0.0000)
+  24 O      3.638859    0.000000    7.500000    ( 0.0000,  0.0000,  0.0000)
+  25 O      8.856309    1.896200    7.500000    ( 0.0000,  0.0000,  0.0000)
+  26 O      3.638859    3.792400    7.500000    ( 0.0000,  0.0000,  0.0000)
+  27 O      8.856309    5.688600    7.500000    ( 0.0000,  0.0000,  0.0000)
+  28 O      6.592144    0.000000    8.383207    ( 0.0000,  0.0000,  0.0000)
+  29 O      1.374694    1.896200    8.383207    ( 0.0000,  0.0000,  0.0000)
+  30 O      6.592144    3.792400    8.383207    ( 0.0000,  0.0000,  0.0000)
+  31 O      1.374694    5.688600    8.383207    ( 0.0000,  0.0000,  0.0000)
+  32 O     10.339421    0.000000    8.956758    ( 0.0000,  0.0000,  0.0000)
+  33 O      5.121971    1.896200    8.956758    ( 0.0000,  0.0000,  0.0000)
+  34 O     10.339421    3.792400    8.956758    ( 0.0000,  0.0000,  0.0000)
+  35 O      5.121971    5.688600    8.956758    ( 0.0000,  0.0000,  0.0000)
+  36 O      2.857911    0.000000    9.839966    ( 0.0000,  0.0000,  0.0000)
+  37 O      8.075361    1.896200    9.839966    ( 0.0000,  0.0000,  0.0000)
+  38 O      2.857911    3.792400    9.839966    ( 0.0000,  0.0000,  0.0000)
+  39 O      8.075361    5.688600    9.839966    ( 0.0000,  0.0000,  0.0000)
+  40 O      5.017100    0.000000   11.033173    ( 0.0000,  0.0000,  0.0000)
+  41 O     10.234550    1.896200   11.033173    ( 0.0000,  0.0000,  0.0000)
+  42 O      5.017100    3.792400   11.033173    ( 0.0000,  0.0000,  0.0000)
+  43 O     10.234550    5.688600   11.033173    ( 0.0000,  0.0000,  0.0000)
+  44 O      7.970490    0.000000   11.916380    ( 0.0000,  0.0000,  0.0000)
+  45 O      2.753040    1.896200   11.916380    ( 0.0000,  0.0000,  0.0000)
+  46 O      7.970490    3.792400   11.916380    ( 0.0000,  0.0000,  0.0000)
+  47 O      2.753040    5.688600   11.916380    ( 0.0000,  0.0000,  0.0000)
+  48 O      1.282867    0.000000   12.489931    ( 0.0000,  0.0000,  0.0000)
+  49 O      6.500317    1.896200   12.489931    ( 0.0000,  0.0000,  0.0000)
+  50 O      1.282867    3.792400   12.489931    ( 0.0000,  0.0000,  0.0000)
+  51 O      6.500317    5.688600   12.489931    ( 0.0000,  0.0000,  0.0000)
+  52 O      4.236152    0.000000   13.373138    ( 0.0000,  0.0000,  0.0000)
+  53 O      9.453603    1.896200   13.373138    ( 0.0000,  0.0000,  0.0000)
+  54 O      4.236152    3.792400   13.373138    ( 0.0000,  0.0000,  0.0000)
+  55 O      9.453603    5.688600   13.373138    ( 0.0000,  0.0000,  0.0000)
+  56 O      6.412072   -0.010033   14.556610    ( 0.0000,  0.0000,  0.0000)
+  57 O      1.198823    1.897930   14.569774    ( 0.0000,  0.0000,  0.0000)
+  58 O      6.447668    3.793171   14.532625    ( 0.0000,  0.0000,  0.0000)
+  59 O      1.199187    5.689336   14.547629    ( 0.0000,  0.0000,  0.0000)
+  60 O      4.033722    1.891518   15.421462    ( 0.0000,  0.0000,  0.0000)
+  61 O      9.263384   -0.007385   15.453502    ( 0.0000,  0.0000,  0.0000)
+  62 O      4.056182    5.703956   15.417797    ( 0.0000,  0.0000,  0.0000)
+  63 O      9.276983    3.794598   15.462247    ( 0.0000,  0.0000,  0.0000)
+  64 O      2.642742   -0.013555   16.279518    ( 0.0000,  0.0000,  0.0000)
+  65 O      7.840025    1.892632   16.276827    ( 0.0000,  0.0000,  0.0000)
+  66 O      2.638424    3.815752   16.259314    ( 0.0000,  0.0000,  0.0000)
+  67 O      7.851442    5.687213   16.316677    ( 0.0000,  0.0000,  0.0000)
+  68 O      5.664333   -0.017638   16.912131    ( 0.0000,  0.0000,  0.0000)
+  69 O      0.405331    1.895786   16.891848    ( 0.0000,  0.0000,  0.0000)
+  70 O      0.447526    5.688107   16.892737    ( 0.0000,  0.0000,  0.0000)
+  71 O      5.620240    3.815240   16.822627    ( 0.0000,  0.0000,  0.0000)
+  72 Au     5.402004    1.459542   18.435638    ( 0.0000,  0.0000,  0.0000)
+  73 Au     7.227773    3.254817   19.494175    ( 0.0000,  0.0000,  0.0000)
+  74 Au     2.680675    1.867315   18.895591    ( 0.0000,  0.0000,  0.0000)
+  75 Au     4.579183    3.616569   19.675117    ( 0.0000,  0.0000,  0.0000)
+
+Unit cell:
+           periodic     x           y           z      points  spacing
+  1. axis:    yes   10.434900    0.000000    0.000000    52     0.2007
+  2. axis:    yes    0.000000    7.584800    0.000000    36     0.2107
+  3. axis:    yes    0.000000    0.000000   28.826383   144     0.2002
+
+  Lengths:  10.434900   7.584800  28.826383
+  Angles:   90.000000  90.000000  90.000000
+
+Effective grid spacing dv^(1/3) = 0.2038
+
+     iter     time        total  log10-change:  magmom
+                         energy   eigst   dens
+iter:   1 17:05:35 76766.343015    +nan           +0.0000
+iter:   2 20:08:51 59811.746026   +2.08  -0.70    +0.0000
+iter:   3 22:54:56  5056.610517   +1.39  -0.82    +0.0000
+iter:   4 01:26:06  5107.047425   +1.15  -0.85    +0.0000
+iter:   5 03:44:22  5052.570951   +1.02  -0.82    +0.0000
+iter:   6 05:53:48  5135.665187   +0.88  -0.79    +0.0000
+iter:   7 07:55:28  5129.523813   +0.75  -0.76    +0.0000
+iter:   8 09:52:01  5239.530320   +0.72  -0.74    +0.0000
+iter:   9 11:44:17  5249.023743   +0.73  -0.74    +0.0000
+iter:  10 13:34:25  5284.204673   +0.78  -0.73    +0.0000
+iter:  11 15:23:32  5297.614235   +0.66  -0.73    +0.0000
+iter:  12 17:13:09  5339.837674   +0.50  -0.73    +0.0000
+iter:  13 19:02:56  5370.575620   +0.45  -0.73    +0.0000
+iter:  14 20:53:33  5399.805350   +0.45  -0.74    +0.0000
+iter:  15 22:44:03  5426.984897   +0.46  -0.75    +0.0000
+iter:  16 00:33:58  5452.114983   +0.48  -0.75    +0.0000
+iter:  17 02:23:30  5474.600292   +0.50  -0.76    +0.0000
+iter:  18 04:13:01  5496.115809   +0.52  -0.77    +0.0000
+iter:  19 06:02:12  5514.716021   +0.54  -0.78    +0.0000
+iter:  20 07:51:47  5531.376411   +0.56  -0.79    +0.0000
+iter:  21 09:42:08  5548.332111   +0.58  -0.80    +0.0000
+iter:  22 11:33:37  5561.705962   +0.60  -0.81    +0.0000
+iter:  23 13:27:50  5573.334984   +0.63  -0.82    +0.0000
+iter:  24 15:24:52  5584.339755   +0.65  -0.83    +0.0000
