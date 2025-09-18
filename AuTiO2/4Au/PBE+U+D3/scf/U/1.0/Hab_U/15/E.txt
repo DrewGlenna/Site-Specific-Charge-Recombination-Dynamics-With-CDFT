@@ -1,0 +1,5 @@
+Initial State Energy          = -424.527290 eV
+Final State Energy            = -424.871173 eV
+Ground State Energy           = -425.814879 eV
+Original CDFT Coupling Energy = 346.158495 eV
+Migliore Coupling Energy      = 4.721999 eV
